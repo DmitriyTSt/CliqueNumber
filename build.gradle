@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.5.20'
+}
+
+group 'ru.dmitriyt.dcs.task.cliquenumber'
+version '1.0-SNAPSHOT'
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'DCS Task Clique number',
+                'Implementation-Version': project.version
+    }
+    archiveFileName.set("CliqueNumberGraphTask.jar")
+    from { configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+
+repositories {
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    implementation "com.github.DmitriyTSt:dcs-core:1.2"
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
